@@ -6,11 +6,11 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 18:15:20 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/24 18:22:30 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:38:20 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 int	close_program(void *l)
 {

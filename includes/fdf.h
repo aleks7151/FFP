@@ -6,7 +6,7 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 17:23:10 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/24 18:16:40 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:37:40 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct		s_color
 	int				ce;
 }					t_col;
 
-int 			    close_program(void *l);
+int					close_program(void *l);
 int					fill_in(t_lst *lst, char ***line, int i, char *name);
 int					new(t_lst *lst);
 void				draw_line(t_lst lst);

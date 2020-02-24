@@ -6,11 +6,11 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 23:09:13 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/24 17:44:18 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:37:59 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 void	ordinate(t_lst *t, int l, int k)
 {

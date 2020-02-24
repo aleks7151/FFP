@@ -6,11 +6,11 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 23:17:28 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/24 18:22:11 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:38:09 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 void	line_x(t_lst lst, int x, int y)
 {

@@ -6,11 +6,11 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 23:15:06 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/24 17:57:52 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:38:02 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 int		ft_atoi_16(char *str, int *k, int ch, int des)
 {
