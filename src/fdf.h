@@ -6,7 +6,7 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 17:23:10 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/23 15:54:30 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:16:40 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define GREEN 0x00FF00
 # define COLOR_B 0x00FFFF
 # define COLOR_E 0xFF4488
-# define SH_X WIDTH / 2 + 100
-# define SH_Y HEIGHT / 2 + 100
+# define SH_X 1350
+# define SH_Y 700
 # include "mlx.h"
 # include "../includes/libft/get_next_line.h"
 # include <math.h>
@@ -104,6 +104,7 @@ typedef struct		s_color
 	int				ce;
 }					t_col;
 
+int 			    close_program(void *l);
 int					fill_in(t_lst *lst, char ***line, int i, char *name);
 int					new(t_lst *lst);
 void				draw_line(t_lst lst);
@@ -115,8 +116,8 @@ void				fon(int *data, int col);
 int					kp(int key, void *l);
 void				mnoj(t_lst *l, int *x0, int *y0, int *z0);
 void				record(t_lst *lst, int t, int k, int *ct);
-int					ft_atoi_16(char *str, int *k);
-int					cycle(t_lst *lst, char **line);
+int					ft_atoi_16(char *str, int *k, int ch, int des);
+int					cycle(t_lst *lst, char **line, int t, int nbr);
 void				nul_matrix(t_lst *lst);
 float				abc(int x, int y);
 int					get_col(t_col cl, int min, int max, int cur);

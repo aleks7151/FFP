@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   record.c                                           :+:      :+:    :+:   */
+/*   rec_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vabraham <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 23:15:06 by vabraham          #+#    #+#             */
-/*   Updated: 2019/10/29 23:15:07 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:57:52 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_atoi_16(char *str, int *k)
+int		ft_atoi_16(char *str, int *k, int ch, int des)
 {
-	int		des;
-
-	des = 0;
 	while (str[*k])
 	{
 		if (str[*k] == 'F' || str[*k] == 'f')
@@ -36,7 +33,10 @@ int		ft_atoi_16(char *str, int *k)
 		else
 			break ;
 		*k += 1;
+		ch++;
 	}
+	if (ch != 6)
+		error();
 	return (des);
 }
 
@@ -58,7 +58,7 @@ int		getsize_nbr(char *str, int i, int s)
 		if (str[i] == ',')
 		{
 			i += 3;
-			ft_atoi_16(str, &i);
+			ft_atoi_16(str, &i, 0, 0);
 		}
 		if (str[i] && i != 0 && str[i] == '-')
 			return (-1);
@@ -91,22 +91,20 @@ void	nul_fill_out(int *cf, int nbr)
 		cf[i] = -1;
 }
 
-int		cycle(t_lst *lst, char **line)
+int		cycle(t_lst *lst, char **line, int t, int nbr)
 {
-	int t;
-	int nbr;
-
-	t = -1;
 	while (line[++t])
 	{
 		nbr = getsize_nbr(line[t], 0, 0);
-		if ((t != 0 && nbr != lst->len[t - 1]) || nbr < 0
+		if ((t != 0 && nbr != lst->len[t - 1]) || nbr <= 0
 			|| !(lst->matz[t] = (int *)malloc(sizeof(int) * nbr))
 			|| !(lst->color_file[t] = (int *)malloc(sizeof(int) * nbr)))
 			return (error());
 		nul_fill_out((lst->color_file)[t], nbr);
 		lst->len[t] = nbr;
 	}
+	if (t == 0)
+		return (error());
 	if (t == 1 && nbr == 1)
 		lst->data[WIDTH * HEIGHT / 2 + WIDTH / 2] = lst->color_b0;
 	if (t == 1 && nbr == 1)

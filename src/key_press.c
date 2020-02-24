@@ -6,7 +6,7 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 23:07:27 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/23 15:50:25 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:10:35 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int		kp_2(int key, t_lst *lst)
 {
-	if (key == 43)
+	if (key == 7 && lst->zp - 100 > 0 && lst->perspective)
+		lst->zp -= 100;
+	else if (key == 43)
 	{
 		lst->color_b0 = GREEN;
 		lst->color_e0 = YELLOW;
@@ -42,22 +44,21 @@ int		kp_1(int key, t_lst *lst)
 		lst->per = 0;
 		lst->perspective = 0;
 	}
-	else if (key == 24)
+	else if (key == 24 && lst->a < 257 && lst->size_z < 257)
 	{
 		lst->a *= 2;
 		lst->size_z *= 2;
 		new_0(lst, -1, 0);
 	}
-	else if (key == 27 && lst->a > lst->begin_a / 4)
+	else if (key == 27 && lst->a > lst->begin_a / 4
+		&& lst->a > 1 && lst->size_z > 1)
 	{
 		lst->a /= 2;
 		lst->size_z /= 2;
 		new_0(lst, -1, 0);
 	}
-	else if (key == 6 && lst->perspective)
+	else if (key == 6 && lst->perspective && lst->zp < 10000)
 		lst->zp += 100;
-	else if (key == 7 && lst->zp - 100 > 0 && lst->perspective)
-		lst->zp -= 100;
 	return (kp_2(key, lst));
 }
 
@@ -65,7 +66,7 @@ int		kp_0(int key, t_lst *lst)
 {
 	if (key == 1 && lst->perspective)
 		lst->per += 10;
-	else if (key == 2 && lst->perspective)
+	else if (key == 2 && lst->perspective && lst->per < 5000)
 		lst->per += 100;
 	else if (key == 35)
 	{
@@ -109,7 +110,7 @@ int		kp(int key, void *l)
 		lst->be_z -= 0.04;
 	else if (key == 13 && lst->perspective)
 		lst->per -= 10;
-	else if (key == 14 && lst->perspective)
+	else if (key == 14 && lst->perspective && lst->per > -5000)
 		lst->per -= 100;
 	return (kp_0(key, lst));
 }

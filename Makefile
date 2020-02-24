@@ -6,12 +6,12 @@
 #    By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 22:09:29 by vabraham          #+#    #+#              #
-#    Updated: 2020/02/23 15:53:43 by vabraham         ###   ########.fr        #
+#    Updated: 2020/02/24 18:17:17 by vabraham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-FILES = src/main.c src/matrix.c src/key_press.c src/new.c src/rec_file.c src/brez.c
+FILES = src/main.c src/matrix.c src/key_press.c src/new.c src/rec_file.c src/brez.c src/close_program.c
 LIB = includes/libft/libft.a
 NAME = fdf
 OBJ = $(patsubst %.c,%.o,$(FILES))

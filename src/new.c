@@ -6,7 +6,7 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 23:09:13 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/23 15:50:23 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:44:18 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,30 +86,30 @@ void	home(t_lst *lst)
 		home_0(lst, l, -1);
 }
 
-void	new_0(t_lst *lst, int t, int k)
+void	new_0(t_lst *l, int t, int k)
 {
 	int ct;
 
-	lst->min_z = 2147483647;
-	lst->max_z = -2147483648;
-	while ((lst->line)[++t])
+	l->min_z = 2147483647;
+	l->max_z = -2147483648;
+	while ((l->line)[++t])
 	{
 		k = 0;
 		ct = 0;
-		while ((lst->line)[t][k])
+		while ((l->line)[t][k])
 		{
-			record(lst, t, k, &ct);
-			while ((lst->line)[t][k] && (lst->line)[t][k] == ' ')
+			record(l, t, k, &ct);
+			while ((l->line)[t][k] && (l->line)[t][k] == ' ')
 				k++;
-			if ((lst->line)[t][k] && (lst->line)[t][k] == '-')
+			if ((l->line)[t][k] && (l->line)[t][k] == '-')
 				k++;
-			while ((lst->line)[t][k] && (lst->line)[t][k] >= '0'
-				&& (lst->line)[t][k] <= '9')
+			while ((l->line)[t][k] && (l->line)[t][k] >= '0'
+				&& (l->line)[t][k] <= '9')
 				k++;
-			if ((lst->line)[t][k] == ',')
+			if ((l->line)[t][k] == ',')
 			{
-				check_color(lst->line[t], &k);
-				(lst->color_file)[t][ct - 1] = ft_atoi_16((lst->line)[t], &k);
+				check_color(l->line[t], &k);
+				(l->color_file)[t][ct - 1] = ft_atoi_16((l->line)[t], &k, 0, 0);
 			}
 		}
 	}
@@ -126,11 +126,11 @@ int		new(t_lst *lst)
 	lst->color_e0 = RED;
 	lst->color_fon = FON;
 	lst->point = 0;
-	lst->len = (int *)malloc(sizeof(int) * lst->i);
-	if (!(lst->matz = (int **)malloc(sizeof(int *) * lst->i)) ||
+	if (!(lst->len = (int *)malloc(sizeof(int) * lst->i)) ||
+		!(lst->matz = (int **)malloc(sizeof(int *) * lst->i)) ||
 		!(lst->color_file = (int **)malloc(sizeof(int *) * lst->i)))
 		return (error());
-	cycle(lst, lst->line);
+	cycle(lst, lst->line, -1, 0);
 	lst->perspective = 0;
 	lst->zp = 800;
 	new_0(lst, -1, 0);

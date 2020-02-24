@@ -6,7 +6,7 @@
 /*   By: vabraham <vabraham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 22:19:53 by vabraham          #+#    #+#             */
-/*   Updated: 2020/02/23 15:51:41 by vabraham         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:14:43 by vabraham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,19 @@ void	fon(int *data, int col)
 		data[i] = col;
 }
 
+void	digit_i(t_lst *lst, int fd)
+{
+	int		gnl;
+
+	while ((gnl = get_next_line(fd, &(lst->str))) > 0)
+	{
+		(lst->i)++;
+		free(lst->str);
+	}
+	if (gnl < 0)
+		error();
+}
+
 int		main(int argc, char **argv)
 {
 	int		fd;
@@ -55,23 +68,22 @@ int		main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ussage());
-	lst = malloc(sizeof(t_lst));
-	lst->mlx_ptr = mlx_init();
-	lst->win_ptr = mlx_new_window(lst->mlx_ptr, WIDTH, HEIGHT, "FDF");
-	lst->img_ptr = mlx_new_image(lst->mlx_ptr, WIDTH, HEIGHT);
-	lst->data = (int *)mlx_get_data_addr(lst->img_ptr,
-		&(lst->n0), &(lst->n1), &(lst->n2));
-	if ((fd = open(argv[1], O_RDONLY)) <= 0)
-		return (error());
+	fd = 0;
+	if (!(lst = malloc(sizeof(t_lst)))
+		|| !(lst->mlx_ptr = mlx_init())
+		|| !(lst->img_ptr = mlx_new_image(lst->mlx_ptr, WIDTH, HEIGHT))
+		|| !(lst->data = (int *)mlx_get_data_addr(lst->img_ptr,
+		&(lst->n0), &(lst->n1), &(lst->n2)))
+		|| ((fd = open(argv[1], O_RDONLY)) <= 0))
+		error();
 	lst->i = 0;
-	while (get_next_line(fd, &(lst->str)) > 0)
-	{
-		(lst->i)++;
-		free(lst->str);
-	}
+	digit_i(lst, fd);
 	close(fd);
-	mlx_hook(lst->win_ptr, 2, 0, kp, (void *)lst);
 	fill_in(lst, &(lst->line), lst->i, argv[1]);
+	if (!(lst->win_ptr = mlx_new_window(lst->mlx_ptr, WIDTH, HEIGHT, "FDF")))
+		error();
+	mlx_hook(lst->win_ptr, 2, 0, kp, (void *)lst);
+	mlx_hook(lst->win_ptr, 17, 0, close_program, (void *)lst);
 	mlx_put_image_to_window(lst->mlx_ptr, lst->win_ptr, lst->img_ptr, 0, 0);
 	mlx_loop(lst->mlx_ptr);
 	return (0);
